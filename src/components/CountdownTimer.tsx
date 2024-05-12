@@ -13,7 +13,7 @@ type Props = {
 };
 
 function CountdownTimer() {
-  const { data: expiration } = useReadContract({
+  const { data: expiration, isLoading: isLoadingExpiration } = useReadContract({
     contract: CONTRACT,
     method: "expiration",
   });
@@ -66,6 +66,8 @@ function CountdownTimer() {
       );
     }
   };
+
+  if (isLoadingExpiration) return null;
 
   return (
     <div>

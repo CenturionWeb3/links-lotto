@@ -8,9 +8,7 @@ import {
   TransactionButton,
   useActiveAccount,
   useReadContract,
-  useSendTransaction,
 } from "thirdweb/react";
-import toast from "react-hot-toast";
 import { CONTRACT, currency } from "../../utils/constants";
 import { prepareContractCall, toWei } from "thirdweb";
 import CountdownTimer from "./CountdownTimer";
@@ -22,7 +20,6 @@ function Draw() {
   const wallet = useActiveAccount()?.address;
   const [userTickets, setUserTickets] = useState(0);
   const [quantity, setQuantity] = useState<number>(1);
-  const { mutate: sendTransaction, isPending } = useSendTransaction();
   const { data: RemainingTickets, isLoading: remainingLoading } =
     useReadContract({
       contract: CONTRACT,
@@ -32,49 +29,34 @@ function Draw() {
     contract: CONTRACT,
     method: "CurrentWinningReward",
   });
-  const { data: ticketPrice, isLoading: priceLoading } = useReadContract({
+  const { data: ticketPrice } = useReadContract({
     contract: CONTRACT,
     method: "ticketPrice",
   });
-  const { data: ticketCommission, isLoading: commissionLoading } =
-    useReadContract({
-      contract: CONTRACT,
-      method: "ticketCommission",
-    });
-  const { data: tickets, isLoading: ticketsLoading } = useReadContract({
+  const { data: ticketCommission } = useReadContract({
+    contract: CONTRACT,
+    method: "ticketCommission",
+  });
+  const { data: tickets } = useReadContract({
     contract: CONTRACT,
     method: "getTickets",
   });
-  const { data: expiration, isLoading: expirationLoading } = useReadContract({
+  const { data: isLotteryOperator } = useReadContract({
     contract: CONTRACT,
-    method: "expiration",
+    method: "lotteryOperator",
   });
-  const { data: isLotteryOperator, isLoading: operatorLoading } =
-    useReadContract({
-      contract: CONTRACT,
-      method: "lotteryOperator",
-    });
-  const { data: lastWinner, isLoading: lastWinnerLoading } = useReadContract({
+  const { data: lastWinner } = useReadContract({
     contract: CONTRACT,
     method: "lastWinner",
   });
-  const { data: lastWinnerAmount, isLoading: lastWinnerAmountLoading } =
-    useReadContract({
-      contract: CONTRACT,
-      method: "lastWinnerAmount",
-    });
-  const WithdrawWinnings = prepareContractCall({
+  const { data: lastWinnerAmount } = useReadContract({
     contract: CONTRACT,
-    method: "WithdrawWinnings",
+    method: "lastWinnerAmount",
   });
-  const { data: winnings, isLoading: winningsLoading } = useReadContract({
+  const { data: winnings } = useReadContract({
     contract: CONTRACT,
     method: "getWinningsForAddress",
     params: [wallet],
-  });
-  const BuyTickets = prepareContractCall({
-    contract: CONTRACT,
-    method: "BuyTickets",
   });
 
   useEffect(() => {
@@ -91,49 +73,6 @@ function Draw() {
   }, [tickets, wallet]);
 
   console.log(userTickets);
-
-  const handleClick = async () => {
-    if (!ticketPrice) return;
-
-    const notification = toast.loading("Buying your tickets...");
-
-    try {
-      const data = await BuyTickets([
-        {
-          value: ethers.parseEther(
-            (Number(ethers.formatEther(ticketPrice)) * quantity).toString()
-          ),
-        },
-      ]);
-
-      toast.success("Tickets purchased successfully!", {
-        id: notification,
-      });
-
-      console.info("contract call success", data);
-    } catch (err) {
-      toast.error("Whoops something went wrong!", {
-        id: notification,
-      });
-
-      console.error("contract call failure", err);
-    }
-  };
-
-  const onWithdrawWinnings = async () => {
-    const notification = toast.loading("Withdrawing winnings...");
-
-    try {
-      const data = WithdrawWinnings([{}]);
-      toast.success("Winnings withdrawn successfully!", {
-        id: notification,
-      });
-    } catch (err) {
-      toast.error("Whoops something went wrong!", {
-        id: notification,
-      });
-    }
-  };
 
   return (
     <div>
@@ -190,18 +129,6 @@ function Draw() {
                     <br />
                     <p className="font-semibold">Click here to withdraw</p>
                   </TransactionButton>
-                  {/* <button
-                    onClick={onWithdrawWinnings}
-                    className="p-5 bg-stone-500 animate-pulse text-center rounded-xl w-full"
-                  >
-                    <p className="font-bold">Winner Winner Chicken Dinner</p>
-                    <p>
-                      Total Winnings: {ethers.formatEther(winnings.toString())}{" "}
-                      BNB
-                    </p>
-                    <br />
-                    <p className="font-semibold">Click here to withdraw</p>
-                  </button> */}
                 </div>
               )}
             </div>
@@ -331,11 +258,6 @@ function Draw() {
                 </div>
               </div>
             </div>
-          </div>
-
-          {/* The Price Per Ticket Box */}
-          <div>
-            <div></div>
           </div>
         </div>
       )}
