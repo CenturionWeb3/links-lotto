@@ -10,7 +10,6 @@ import {
 import { useReadContract, TransactionButton } from "thirdweb/react";
 import { prepareContractCall } from "thirdweb";
 import { ethers } from "ethers";
-import toast from "react-hot-toast";
 import { CONTRACT, currency } from "../../utils/constants";
 
 function AdminControls() {
