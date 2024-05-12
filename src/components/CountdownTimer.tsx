@@ -17,6 +17,7 @@ function CountdownTimer() {
     contract: CONTRACT,
     method: "expiration",
   });
+  const expire = expiration?.toString();
 
   const renderer = ({ hours, minutes, seconds, completed }: Props) => {
     if (completed) {
@@ -71,10 +72,7 @@ function CountdownTimer() {
 
   return (
     <div>
-      <Countdown
-        date={new Date(expiration?.toString() * 1000)}
-        renderer={renderer}
-      />
+      <Countdown date={new Date(expire * 1000)} renderer={renderer} />
     </div>
   );
 }
