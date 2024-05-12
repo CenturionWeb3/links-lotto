@@ -7,7 +7,6 @@ import {
   ArrowPathIcon,
   ArrowUturnDownIcon,
 } from "@heroicons/react/24/solid";
-import styles from "../../styles/Home.module.css";
 import { useReadContract, TransactionButton } from "thirdweb/react";
 import { prepareContractCall } from "thirdweb";
 import { ethers } from "ethers";
