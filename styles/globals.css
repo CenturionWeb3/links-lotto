@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .stats {
+    @apply bg-stone-900 text-white p-4 flex-1 rounded-md border-stone-600 border-2;
+  }
+
+  .stats-container {
+    @apply bg-stone-950 p-5 rounded-lg border-stone-700 border flex-1;
+  }
+
+  .countdown {
+    @apply p-8 text-5xl text-center text-white rounded-lg lg:min-w-[150px] bg-stone-900;
+  }
+
+  .countdown-label {
+    @apply text-center text-white uppercase text-sm pt-4;
+  }
+  .admin-button {
+    @apply bg-stone-900 text-stone-100 p-2 flex-1 rounded-md border-stone-600 border-2 hover:bg-stone-500/50 !important;
+  }
+
+  .winner-button {
+    @apply p-5 bg-stone-500 animate-pulse text-center rounded-xl w-full !important;
+  }
+
+  .button {
+    @apply bg-stone-900 p-2 flex-1 rounded-md border-stone-600 border-2 hover:bg-stone-500/50;
+  }
+}
+
+:root {
+  --font-base: "Avenir Next", "Manrope", sans-serif;
+  --font-mono: "Fira Code", "Fira Mono", "Roboto Mono", monospace;
+  --h: 180;
+  --s: 2%;
+  --l: 20%;
+  --color-bg: hsl(0, 0%, 4%);
+  --color-stone-100: #f5f5f4;
+  --color-stone-200: #e5e5e5;
+  --color-stone-300: #d6d3d1;
+  --color-stone-400: #a8a29e;
+  --color-stone-500: #78716c;
+  --color-stone-600: #57534e;
+  --color-stone-700: #44403c;
+  --color-stone-800: #292524;
+  --color-stone-900: #1c1917;
+  --color-stone-950: #0c0a09;
+  --color-primary: hsl(var(--h), var(--s), var(--l));
+  --shadow-md: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px,
+    rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+  --shadow-lg: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
+  --rounded-sm: 0.5rem;
+  --rounded-md: 1.5rem;
+}
+
+body {
+  min-height: 100%;
+  font-family: var(--font-base);
+  background-color: var(--color-bg);
+  color: var(--color-grey-100);
+  background-image: url("/pattern.png");
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
