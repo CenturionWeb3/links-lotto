@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { ConnectButton } from "thirdweb/react";
+import { ConnectButton, darkTheme } from "thirdweb/react";
 import { client, wallets } from "../../utils/constants";
 
 function Login() {
@@ -14,8 +14,18 @@ function Login() {
           <ConnectButton
             client={client}
             wallets={wallets}
-            theme={"dark"}
-            connectModal={{ size: "compact" }}
+            theme={darkTheme({
+              colors: {
+                primaryButtonBg: "#44403c",
+                primaryButtonText: "#d6d3d1",
+              },
+            })}
+            connectModal={{
+              size: "compact",
+              title: "Connect Wallet",
+              titleIcon: "",
+              showThirdwebBranding: false,
+            }}
           />
         </div>
       </div>
