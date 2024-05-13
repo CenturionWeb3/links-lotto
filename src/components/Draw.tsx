@@ -17,7 +17,8 @@ import { ethers } from "ethers";
 import Marquee from "react-fast-marquee";
 
 function Draw() {
-  const wallet = useActiveAccount()?.address;
+  const account = useActiveAccount() || "No Wallet Connected";
+  const wallet = account?.toString();
   const [userTickets, setUserTickets] = useState(0);
   const [quantity, setQuantity] = useState<number>(1);
   const { data: RemainingTickets, isLoading: remainingLoading } =
