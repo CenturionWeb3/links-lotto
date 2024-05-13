@@ -17,8 +17,7 @@ import { ethers } from "ethers";
 import Marquee from "react-fast-marquee";
 
 function Draw() {
-  const account = useActiveAccount() || "No Wallet Connected";
-  const wallet = account?.toString();
+  const wallet = useActiveAccount()?.address || "No Wallet Connected";
   const [userTickets, setUserTickets] = useState(0);
   const [quantity, setQuantity] = useState<number>(1);
   const { data: RemainingTickets, isLoading: remainingLoading } =
@@ -54,16 +53,16 @@ function Draw() {
     contract: CONTRACT,
     method: "lastWinnerAmount",
   });
-  const { data: winnings } = useReadContract({
+  const { data: prize } = useReadContract({
     contract: CONTRACT,
     method: "getWinningsForAddress",
     params: [wallet],
   });
-
+  const winnings = prize ?? 0;
   useEffect(() => {
     if (!tickets) return;
 
-    const totalTickets: string[] = tickets;
+    const totalTickets: string[] = [...tickets];
 
     const noOfUserTickets = totalTickets.reduce(
       (total, ticketAddress) => (ticketAddress === wallet ? total + 1 : total),
