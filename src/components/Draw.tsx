@@ -18,6 +18,7 @@ import Marquee from "react-fast-marquee";
 
 function Draw() {
   const wallet = useActiveAccount()?.address || "No Wallet Connected";
+  console.log(wallet);
   const [userTickets, setUserTickets] = useState(0);
   const [quantity, setQuantity] = useState<number>(1);
   const { data: RemainingTickets, isLoading: remainingLoading } =
