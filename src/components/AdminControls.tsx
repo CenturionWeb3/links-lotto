@@ -15,7 +15,7 @@ import { CONTRACT, currency } from "../../utils/constants";
 function AdminControls() {
   const { data: totalCommission } = useReadContract({
     contract: CONTRACT,
-    method: "operatorTotalCommission",
+    method: "totalCommission",
   });
   const DrawWinnerTicket = prepareContractCall({
     contract: CONTRACT,

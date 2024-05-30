@@ -34,9 +34,9 @@ function Draw() {
     contract: CONTRACT,
     method: "ticketPrice",
   });
-  const { data: ticketCommission } = useReadContract({
+  const { data: commission } = useReadContract({
     contract: CONTRACT,
-    method: "ticketCommission",
+    method: "commission",
   });
   const { data: tickets } = useReadContract({
     contract: CONTRACT,
@@ -96,7 +96,7 @@ function Draw() {
                   Previous winnings:{" "}
                   {lastWinnerAmount &&
                     ethers.formatEther(lastWinnerAmount?.toString())}
-                  BNB{" "}
+                  {currency}{" "}
                 </h4>
               </div>
             </Marquee>
@@ -115,6 +115,7 @@ function Draw() {
                       prepareContractCall({
                         contract: CONTRACT,
                         method: "WithdrawWinnings",
+                        params: [wallet],
                       })
                     }
                     className="winner-button"
@@ -142,13 +143,12 @@ function Draw() {
                 </h1>
                 <div className="flex justify-between p-2 space-x-2">
                   <div className="stats">
-                    <h2 className="text-sm">Total Prize Pool</h2>
+                    <h2 className="text-sm">Prize Pool</h2>
                     {poolLoading ? (
                       <p className="text-xl">...</p>
                     ) : (
                       <p className="text-xl">
-                        {prizePool && ethers.formatEther(prizePool?.toString())}{" "}
-                        {currency}
+                        {Number(prizePool) / 10 ** 18 / 4} {currency}
                       </p>
                     )}
                   </div>
@@ -173,9 +173,7 @@ function Draw() {
                   <div className="flex justify-between item-center text-white pb-2">
                     <h2>Price Per Ticket</h2>
                     <p>
-                      {ticketPrice &&
-                        ethers.formatEther(ticketPrice?.toString())}{" "}
-                      {currency}
+                      {Number(ticketPrice) / 10 ** 18} {currency}
                     </p>
                   </div>
                   <div className="flex text-white items-center space-x-2 bg-stone-900 border-stone-600 border pe-4">
@@ -193,20 +191,16 @@ function Draw() {
                     <div className="flex items-center justify-between text-stone-400 text-s italic font-extrabold">
                       <p>Total Cost of Tickets</p>
                       <p>
-                        {ticketPrice &&
-                          Number(ethers.formatEther(ticketPrice.toString())) *
-                            quantity}{" "}
-                        {currency}
+                        {(Number(ticketPrice) / 10 ** 18) * quantity} {currency}
                       </p>
                     </div>
 
                     <div className="flex items-center justify-between text-stone-300 text-xs italic">
                       <p>Service Fees</p>
                       <p>
-                        {ticketCommission &&
-                          Number(
-                            ethers.formatEther(ticketCommission.toString())
-                          ) * quantity}{" "}
+                        {commission &&
+                          Number(ethers.formatEther(commission.toString())) *
+                            quantity}{" "}
                         {currency}
                       </p>
                     </div>
