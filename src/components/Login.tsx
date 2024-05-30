@@ -2,7 +2,7 @@
 
 import React from "react";
 import { ConnectButton, darkTheme } from "thirdweb/react";
-import { client, wallets } from "../../utils/constants";
+import { client, wallets, chain } from "../../utils/constants";
 
 function Login() {
   return (
@@ -14,6 +14,7 @@ function Login() {
           <ConnectButton
             client={client}
             wallets={wallets}
+            chain={chain}
             theme={darkTheme({
               colors: {
                 primaryButtonBg: "#44403c",
