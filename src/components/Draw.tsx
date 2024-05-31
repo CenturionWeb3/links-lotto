@@ -123,13 +123,14 @@ function Draw() {
                       console.log("withdrawing winnings...")
                     }
                   >
-                    <p className="font-bold">Winner Winner Chicken Dinner</p>
-                    <p>
-                      Total Winnings: {ethers.formatEther(winnings.toString())}{" "}
-                      {currency}
+                    <p className="font-bold text-5xl">WE HAVE A WINNER!</p>
+                    <p className="font-semibold text-2xl">
+                      Congratulations! You have won{" "}
+                      {ethers.formatEther(winnings.toString())} {currency}!
                     </p>
-                    <br />
-                    <p className="font-semibold">Click here to withdraw</p>
+                    <p className="font-semibold text-xl pt-4">
+                      Click here to claim your prize!
+                    </p>
                   </TransactionButton>
                 </div>
               )}

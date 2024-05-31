@@ -5,7 +5,7 @@ import { Toaster } from "react-hot-toast";
 
 export const metadata: Metadata = {
   title: "Links Lotto",
-  description: "Lottery dApp Powered By Interlink",
+  description: "Lottery dApp powered By Interlink",
 };
 
 export default function RootLayout({
