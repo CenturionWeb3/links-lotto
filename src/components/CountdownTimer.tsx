@@ -54,7 +54,7 @@ function CountdownTimer() {
     } else {
       return (
         <div>
-          <h3 className="text-white text-sm mb-2 italic">Time Remaining</h3>
+          <h3 className="text-white text-xl mb-2 italic">Time Remaining</h3>
           <div className="flex space-x-6">
             <div className="flex-1">
               <div className="countdown">{days}</div>
