@@ -169,7 +169,7 @@ function Draw() {
               <div className="stats-container">
                 <h1 className="text-4xl lg:text-5xl text-white font font-semibold text-center">
                   {" "}
-                  NEXT WEEKLY DRAW IN...
+                  NEXT WEEKLY DRAW
                 </h1>
                 <div className="flex justify-between p-2 space-x-2">
                   {/* <div className="stats">
