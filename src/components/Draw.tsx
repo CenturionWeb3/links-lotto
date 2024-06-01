@@ -142,25 +142,29 @@ function Draw() {
                   PRIZE POOLS
                 </h1>
                 <div className="flex justify-center mx-3 p-2 space-x-10">
-                  <div className="stats">
-                    <h2 className="text-sm">Draw Winner Will Recieve:</h2>
-                    {poolLoading ? (
-                      <p className="text-xl">...</p>
-                    ) : (
-                      <p className="text-xl pt-2">
-                        {Number(prizePool) / 10 ** 18 / 4} {currency}
-                      </p>
-                    )}
+                  <div className="flex-1">
+                    <div className="pool-label">Draw Winner Recieves:</div>
+                    <div className="stats">
+                      {poolLoading ? (
+                        <p className="text-xl">...</p>
+                      ) : (
+                        <p className="text-3xl text-center pt-2">
+                          {Number(prizePool) / 10 ** 18 / 4} {currency}
+                        </p>
+                      )}
+                    </div>
                   </div>
-                  <div className="stats">
-                    <h2 className="text-sm">Buyback/Burn of Alliance Token:</h2>
-                    {poolLoading ? (
-                      <p className="text-xl">...</p>
-                    ) : (
-                      <p className="text-xl pt-2">
-                        {Number(prizePool) / 10 ** 18 / 4} {currency}
-                      </p>
-                    )}
+                  <div className="flex-1">
+                    <div className="pool-label">Alliance Member Recieves:</div>
+                    <div className="stats">
+                      {poolLoading ? (
+                        <p className="text-xl">...</p>
+                      ) : (
+                        <p className="text-3xl text-center pt-2">
+                          {Number(prizePool) / 10 ** 18 / 4} {currency}
+                        </p>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>

@@ -18,6 +18,9 @@
   .countdown-label {
     @apply text-center text-white uppercase text-sm pt-4;
   }
+  .pool-label {
+    @apply text-center text-white uppercase text-sm md:text-lg lg:text-xl pt-4;
+  }
   .admin-button {
     @apply bg-stone-900 text-stone-100 p-2 flex-1 rounded-md border-stone-600 border-2 hover:bg-stone-500/50 !important;
   }
