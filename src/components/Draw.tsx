@@ -83,7 +83,7 @@ function Draw() {
         <div className="min-h-screen flex flex-col">
           <div className="flex-1 flex-col">
             <Header />
-            <Marquee
+            {/* <Marquee
               className="bg-stone-900 p-5 mb-5"
               gradient={false}
               speed={100}
@@ -99,7 +99,7 @@ function Draw() {
                   {currency}{" "}
                 </h4>
               </div>
-            </Marquee>
+            </Marquee> */}
             <div>
               {isLotteryOperator === wallet ? (
                 <div>
@@ -143,7 +143,7 @@ function Draw() {
                 </h1>
                 <div className="flex justify-center mx-3 p-2 space-x-10">
                   <div className="flex-1">
-                    <div className="pool-label">Draw Winner Recieves:</div>
+                    <div className="pool-label">Draw Winner Receives:</div>
                     <div className="stats">
                       {poolLoading ? (
                         <p className="text-xl">...</p>
@@ -155,7 +155,7 @@ function Draw() {
                     </div>
                   </div>
                   <div className="flex-1">
-                    <div className="pool-label">Alliance Member Recieves:</div>
+                    <div className="pool-label">Alliance Member Receives:</div>
                     <div className="stats">
                       {poolLoading ? (
                         <p className="text-xl">...</p>
