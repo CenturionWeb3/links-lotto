@@ -143,7 +143,7 @@ function Draw() {
                 </h1>
                 <div className="flex justify-center mx-3 p-2 space-x-10">
                   <div className="flex-1">
-                    <div className="pool-label">Draw Winner Receives:</div>
+                    <div className="pool-label">Winner Receives:</div>
                     <div className="stats">
                       {poolLoading ? (
                         <p className="text-xl">...</p>
@@ -155,7 +155,7 @@ function Draw() {
                     </div>
                   </div>
                   <div className="flex-1">
-                    <div className="pool-label">Alliance Member Receives:</div>
+                    <div className="pool-label">Alliance Receives:</div>
                     <div className="stats">
                       {poolLoading ? (
                         <p className="text-xl">...</p>
