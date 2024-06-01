@@ -12,7 +12,7 @@ function Login() {
         <h1 className="text-6xl text-white font-bold">WELCOME TO</h1>
         <h1 className="text-6xl text-white font-bold">THE LINKS LOTTO</h1>
         <br />
-        <h3 className="text-xl text-white font-bold w-1/2">
+        <h3 className="text-xl text-white font-bold w-2/3 md:w-1/2 xl:w-3/5">
           Connect your wallet below to enter the dApp and buy your tickets for a
           raffle that will take place every Sunday at the end of our weekly
           spaces on X!
