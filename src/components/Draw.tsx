@@ -170,7 +170,7 @@ function Draw() {
               </div>
             </div>
             {/* The Next Draw Box */}
-            <div className="space-y-5 h-84 md:space-y-0 h-84 m-5 md:flex lg:flex-row items-start justify-center md:space-x-5">
+            <div className="space-y-5 h-84 md:space-y-0 h-84 m-5 md:flex lg:flex-row items-stretch justify-center md:space-x-5">
               <div className="stats-container">
                 <h1 className="text-4xl lg:text-5xl text-white font font-semibold text-center">
                   {" "}
@@ -244,15 +244,10 @@ function Draw() {
                           value: toWei((0.01 * quantity).toString()),
                         })
                       }
-                      style={{ margin: 15 }}
                       className="admin-button"
                       onTransactionSent={() => console.log("drawing winner...")}
                     >
-                      Buy {quantity} tickets for{" "}
-                      {ticketPrice &&
-                        Number(ethers.formatEther(ticketPrice.toString())) *
-                          quantity}{" "}
-                      {currency}
+                      Buy {quantity} Tickets
                     </TransactionButton>
                   </div>
                   {/* {userTickets > 0 && (
