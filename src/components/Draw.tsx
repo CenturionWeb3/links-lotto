@@ -209,9 +209,9 @@ function Draw() {
               </div>
 
               <div className="stats--container space-y-2">
-                <div className="stats-container space-y-5 md:w-full">
-                  <div className="flex font-bold text-base justify-between item-center text-white pt-5">
-                    <p>Price Per Ticket</p>
+                <div className="stats-container space-y-6 md:w-full">
+                  <div className="flex font-bold text-base justify-between item-center text-white mt-6 pt-5">
+                    <p>Ticket Price</p>
                     <p>
                       {Number(ticketPrice) / 10 ** 18} {currency}
                     </p>
@@ -228,8 +228,8 @@ function Draw() {
                     />
                   </div>
                   <div className="space-y-2 mt-5">
-                    <div className="flex items-center justify-between md:w-1/4 text-stone-200 text-s italic font-extrabold space-x-2">
-                      <p>Total Cost of Tickets</p>
+                    <div className="flex items-center justify-between text-stone-200 text-s italic font-extrabold space-x-2">
+                      <p>Total Cost</p>
                       <p>
                         {(Number(ticketPrice) / 10 ** 18) * quantity} {currency}
                       </p>
@@ -265,26 +265,6 @@ function Draw() {
                       Buy {quantity} Tickets
                     </TransactionButton>
                   </div>
-                  {/* {userTickets > 0 && (
-                    <div className="stats">
-                      <p className="text-lg mb-2">
-                        You have {userTickets} tickets in this draw
-                      </p>
-
-                      <div className="flex max-w-sm flex-wrap gap-x-2 gap-y-2 mt-5">
-                        {Array(userTickets)
-                          .fill("")
-                          .map((_, index) => (
-                            <p
-                              key={index}
-                              className="text-stone-300 h-20 w-12 bg-stone-500/30 rounded-lg flex flex-shrink-0 items-center justify-center text-xs italic"
-                            >
-                              {index + 1}
-                            </p>
-                          ))}
-                      </div>
-                    </div>
-                  )} */}
                 </div>
               </div>
             </div>
