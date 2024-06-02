@@ -36,6 +36,13 @@ function Login() {
             }}
           />
         </div>
+        <h3 className="text-lg text-white w-2/3 md:w-1/2 xl:w-3/5">
+          Disclaimer: Alliance members and collaboration projects that
+          participate in weekly retweets of Links Lotto will be eligible for the
+          prizes of buybacks and burns. Additionally, entries are open to all
+          crypto enthusiasts. You do not have to be invested in InterLink or any
+          project affiliated with the InterLink ecosystem.
+        </h3>
       </div>
     </div>
   );
