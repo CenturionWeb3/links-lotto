@@ -21,11 +21,23 @@ function Draw() {
   console.log(wallet);
   const [userTickets, setUserTickets] = useState(0);
   const [quantity, setQuantity] = useState<number>(1);
-  const { data: RemainingTickets, isLoading: remainingLoading } =
-    useReadContract({
-      contract: CONTRACT,
-      method: "RemainingTickets",
-    });
+  const { data: remainingTickets } = useReadContract({
+    contract: CONTRACT,
+    method: "RemainingTickets",
+  });
+
+  const { data: maxTickets } = useReadContract({
+    contract: CONTRACT,
+    method: "maxTickets",
+  });
+
+  let soldTickets: bigint | undefined;
+
+  if (remainingTickets !== undefined && maxTickets !== undefined) {
+    soldTickets = maxTickets - remainingTickets;
+  } else {
+    soldTickets = undefined; // or any other fallback value you prefer
+  }
   const { data: prizePool, isLoading: poolLoading } = useReadContract({
     contract: CONTRACT,
     method: "CurrentWinningReward",
@@ -77,7 +89,7 @@ function Draw() {
 
   return (
     <div>
-      {remainingLoading ? (
+      {poolLoading ? (
         <Loading />
       ) : (
         <div className="min-h-screen flex flex-col">
@@ -173,9 +185,12 @@ function Draw() {
             <div className="space-y-5 h-84 md:space-y-0 h-84 m-5 md:flex lg:flex-row items-stretch justify-center md:space-x-5">
               <div className="stats-container">
                 <h1 className="text-4xl lg:text-5xl text-white font font-semibold text-center">
-                  {" "}
                   NEXT WEEKLY DRAW
                 </h1>
+                <br />
+                <h2 className="text-3xl lg:text-4xl text-white font font-semibold text-center">
+                  {soldTickets && soldTickets?.toString()} Tickets Sold!
+                </h2>
                 <div className="flex justify-between p-2 space-x-2">
                   {/* <div className="stats">
                     <h2 className="text-sm">Tickets Remaining</h2>
@@ -194,7 +209,7 @@ function Draw() {
               </div>
 
               <div className="stats--container space-y-2">
-                <div className="stats-container space-y-5">
+                <div className="stats-container space-y-5 md:w-full">
                   <div className="flex font-bold text-base justify-between item-center text-white pt-5">
                     <p>Price Per Ticket</p>
                     <p>
@@ -213,7 +228,7 @@ function Draw() {
                     />
                   </div>
                   <div className="space-y-2 mt-5">
-                    <div className="flex items-center justify-between text-stone-200 text-s italic font-extrabold space-x-2">
+                    <div className="flex items-center justify-between md:w-1/4 text-stone-200 text-s italic font-extrabold space-x-2">
                       <p>Total Cost of Tickets</p>
                       <p>
                         {(Number(ticketPrice) / 10 ** 18) * quantity} {currency}
