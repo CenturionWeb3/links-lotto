@@ -8,7 +8,7 @@ function Login() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center text-center">
       <div className="flex flex-col items-center mb-10">
-        <img className="rounded-full h-200 w-200 mb-10" src="/spin.gif" />
+        <img className="rounded-full h-200 w-200 mb-5" src="/spin.gif" />
         <h1 className="text-6xl text-white font-bold">WELCOME TO</h1>
         <h1 className="text-6xl text-white font-bold">THE LINKS LOTTO</h1>
         <br />
