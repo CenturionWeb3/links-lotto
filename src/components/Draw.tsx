@@ -9,7 +9,7 @@ import {
   useActiveAccount,
   useReadContract,
 } from "thirdweb/react";
-import { CONTRACT, currency } from "../../utils/constants";
+import { CONTRACT, OLDCONTRACT, currency } from "../../utils/constants";
 import { prepareContractCall, toWei } from "thirdweb";
 import CountdownTimer from "./CountdownTimer";
 import AdminControls from "./AdminControls";
@@ -59,11 +59,11 @@ function Draw() {
     method: "lotteryOperator",
   });
   const { data: lastWinner } = useReadContract({
-    contract: CONTRACT,
+    contract: OLDCONTRACT,
     method: "lastWinner",
   });
   const { data: lastWinnerAmount } = useReadContract({
-    contract: CONTRACT,
+    contract: OLDCONTRACT,
     method: "lastWinnerAmount",
   });
   const { data: prize } = useReadContract({
@@ -95,23 +95,28 @@ function Draw() {
         <div className="min-h-screen flex flex-col">
           <div className="flex-1 flex-col">
             <Header />
-            {/* <Marquee
+            <Marquee
               className="bg-stone-900 p-5 mb-5"
               gradient={false}
               speed={100}
             >
               <div className="flex space-x-2 mx-10">
                 <h4 className="text-white font-bold">
-                  Last Winner: {lastWinner?.toString()}
+                  LAST WEEK'S WINNER: {lastWinner?.substring(0, 5)}...
+                  {lastWinner?.substring(
+                    lastWinner.length,
+                    lastWinner.length - 5
+                  )}
+                  {/* {lastWinner?.toString()} */}
                 </h4>
                 <h4 className="text-white font-bold">
-                  Previous winnings:{" "}
+                  PRIZE:{" "}
                   {lastWinnerAmount &&
                     ethers.formatEther(lastWinnerAmount?.toString())}
                   {currency}{" "}
                 </h4>
               </div>
-            </Marquee> */}
+            </Marquee>
             <div>
               {isLotteryOperator === wallet ? (
                 <div>
