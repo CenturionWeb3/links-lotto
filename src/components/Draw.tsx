@@ -54,10 +54,10 @@ function Draw() {
     contract: CONTRACT,
     method: "getTickets",
   });
-  const { data: isLotteryOperator } = useReadContract({
-    contract: CONTRACT,
-    method: "lotteryOperator",
-  });
+  // const { data: isLotteryOperator } = useReadContract({
+  //   contract: CONTRACT,
+  //   method: "lotteryOperator",
+  // });
   const { data: lastWinner } = useReadContract({
     contract: OLDCONTRACT,
     method: "lastWinner",
@@ -118,13 +118,13 @@ function Draw() {
               </div>
             </Marquee>
             <div>
-              {isLotteryOperator === wallet ? (
+              {/* {isLotteryOperator === wallet ? (
                 <div>
                   <AdminControls />
                 </div>
               ) : (
                 <div></div>
-              )}
+              )} */}
               {winnings > 0 && (
                 <div className="max-w-md md:max-w-2xl lg:max-w-4xl mx-auto mt-5">
                   <TransactionButton
