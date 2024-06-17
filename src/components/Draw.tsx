@@ -59,11 +59,11 @@ function Draw() {
   //   method: "lotteryOperator",
   // });
   const { data: lastWinner } = useReadContract({
-    contract: OLDCONTRACT,
+    contract: CONTRACT,
     method: "lastWinner",
   });
   const { data: lastWinnerAmount } = useReadContract({
-    contract: OLDCONTRACT,
+    contract: CONTRACT,
     method: "lastWinnerAmount",
   });
   const { data: prize } = useReadContract({
