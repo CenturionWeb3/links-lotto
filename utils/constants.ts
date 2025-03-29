@@ -15,7 +15,7 @@ export const wallets = [
   createWallet("com.trustwallet.app"),
 ];
 
-const contractAddress = "0xfC44493533dB7b0fc3736Ba5866dAd32Da8D6AC2";
+const contractAddress = "0x35a240091eEcD59cEc1f6E95C8a4FAceAD7EC407";
 const contractABI = [
   {
     inputs: [
