@@ -156,7 +156,7 @@ function Draw() {
               <div className="stats-container">
                 <h1 className="text-5xl text-white font font-semibold text-center">
                   {" "}
-                  PRIZE POOLS
+                  PRIZE POOL
                 </h1>
                 <div className="flex justify-center mx-3 p-2 space-x-10">
                   <div className="flex-1">
@@ -166,38 +166,25 @@ function Draw() {
                         <p className="text-xl">...</p>
                       ) : (
                         <p className="text-3xl text-center pt-2">
-                          {Number(prizePool) / 10 ** 18 / 4} {currency}
-                        </p>
-                      )}
-                    </div>
-                  </div>
-                  <div className="flex-1">
-                    <div className="pool-label">Alliance Receives:</div>
-                    <div className="stats">
-                      {poolLoading ? (
-                        <p className="text-xl">...</p>
-                      ) : (
-                        <p className="text-3xl text-center pt-2">
-                          {Number(prizePool) / 10 ** 18 / 4} {currency}
+                          {Number(prizePool) / 10 ** 18 / 2} {currency}
                         </p>
                       )}
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-            {/* The Next Draw Box */}
-            <div className="space-y-5 h-84 md:space-y-0 h-84 m-5 md:flex lg:flex-row items-stretch justify-center md:space-x-5">
-              <div className="stats-container">
-                <h1 className="text-4xl lg:text-5xl text-white font font-semibold text-center">
-                  NEXT WEEKLY DRAW
-                </h1>
-                <br />
-                <h2 className="text-3xl lg:text-4xl text-white font font-semibold text-center">
-                  {soldTickets && soldTickets?.toString()} Tickets Sold!
-                </h2>
-                <div className="flex justify-between p-2 space-x-2">
-                  {/* <div className="stats">
+              {/* The Next Draw Box */}
+              <div className="space-y-5 h-84 md:space-y-0 h-84 m-5 md:flex lg:flex-row items-stretch justify-center md:space-x-5">
+                <div className="stats-container">
+                  <h1 className="text-4xl lg:text-5xl text-white font font-semibold text-center">
+                    NEXT WEEKLY DRAW
+                  </h1>
+                  <br />
+                  <h2 className="text-3xl lg:text-4xl text-white font font-semibold text-center">
+                    {soldTickets && soldTickets?.toString()} Tickets Sold!
+                  </h2>
+                  <div className="flex justify-between p-2 space-x-2">
+                    {/* <div className="stats">
                     <h2 className="text-sm">Tickets Remaining</h2>
                     {remainingLoading ? (
                       <p className="text-xl">...</p>
@@ -205,42 +192,43 @@ function Draw() {
                       <p className="text-xl">{RemainingTickets?.toString()}</p>
                     )}
                   </div> */}
+                  </div>
+                  <div className="mt-5 mb-3">
+                    <CountdownTimer />
+                  </div>
+                  {/* Countdown Timer */}
+                  {/* ... */}
                 </div>
-                <div className="mt-5 mb-3">
-                  <CountdownTimer />
-                </div>
-                {/* Countdown Timer */}
-                {/* ... */}
-              </div>
 
-              <div className="stats--container space-y-2">
-                <div className="stats-container space-y-6 md:w-full">
-                  <div className="flex font-bold text-base justify-between item-center text-white mt-6 pt-5">
-                    <p>Ticket Price</p>
-                    <p>
-                      {Number(ticketPrice) / 10 ** 18} {currency}
-                    </p>
-                  </div>
-                  <div className="flex text-white items-center space-x-2 bg-stone-900 border-stone-600 border pe-4">
-                    <p>TICKETS</p>
-                    <input
-                      className="flex w-full bg-transparent text-right outline-none"
-                      type="number"
-                      min={1}
-                      max={15}
-                      value={quantity}
-                      onChange={(e) => setQuantity(Number(e.target.value))}
-                    />
-                  </div>
-                  <div className="space-y-2 mt-5">
-                    <div className="flex items-center justify-between text-stone-200 text-s italic font-extrabold space-x-2">
-                      <p>Total Cost</p>
+                <div className="stats--container space-y-2">
+                  <div className="stats-container space-y-6 md:w-full">
+                    <div className="flex font-bold text-base justify-between item-center text-white mt-6 pt-5">
+                      <p>Ticket Price</p>
                       <p>
-                        {(Number(ticketPrice) / 10 ** 18) * quantity} {currency}
+                        {Number(ticketPrice) / 10 ** 18} {currency}
                       </p>
                     </div>
+                    <div className="flex text-white items-center space-x-2 bg-stone-900 border-stone-600 border pe-4">
+                      <p>TICKETS</p>
+                      <input
+                        className="flex w-full bg-transparent text-right outline-none"
+                        type="number"
+                        min={1}
+                        max={15}
+                        value={quantity}
+                        onChange={(e) => setQuantity(Number(e.target.value))}
+                      />
+                    </div>
+                    <div className="space-y-2 mt-5">
+                      <div className="flex items-center justify-between text-stone-200 text-s italic font-extrabold space-x-2">
+                        <p>Total Cost</p>
+                        <p>
+                          {(Number(ticketPrice) / 10 ** 18) * quantity}{" "}
+                          {currency}
+                        </p>
+                      </div>
 
-                    {/* <div className="flex items-center justify-between text-stone-300 text-xs italic">
+                      {/* <div className="flex items-center justify-between text-stone-300 text-xs italic">
                       <p>Service Fees</p>
                       <p>
                         {commission &&
@@ -250,51 +238,54 @@ function Draw() {
                       </p>
                     </div> */}
 
-                    <div className="flex items-center justify-between text-stone-300 text-xs italic font-semibold">
-                      <p>+ Gas Fees</p>
-                      <p>TBD</p>
+                      <div className="flex items-center justify-between text-stone-300 text-xs italic font-semibold">
+                        <p>+ Gas Fees</p>
+                        <p>TBD</p>
+                      </div>
                     </div>
-                  </div>
-                  <div className="flex flex-col pb-4">
-                    <TransactionButton
-                      transaction={() =>
-                        prepareContractCall({
-                          contract: CONTRACT,
-                          method: "BuyTickets",
-                          value: toWei((0.01 * quantity).toString()),
-                        })
-                      }
-                      className="admin-button"
-                      onTransactionSent={() => console.log("drawing winner...")}
-                    >
-                      Buy {quantity} Tickets
-                    </TransactionButton>
+                    <div className="flex flex-col pb-4">
+                      <TransactionButton
+                        transaction={() =>
+                          prepareContractCall({
+                            contract: CONTRACT,
+                            method: "BuyTickets",
+                            value: toWei((0.01 * quantity).toString()),
+                          })
+                        }
+                        className="admin-button"
+                        onTransactionSent={() =>
+                          console.log("drawing winner...")
+                        }
+                      >
+                        Buy {quantity} Tickets
+                      </TransactionButton>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="flex place-content-center">
-              <div>
-                {userTickets > 0 && (
-                  <div className="stats">
-                    <p className="text-lg mb-2">
-                      You have {userTickets} tickets in this draw
-                    </p>
+              <div className="flex place-content-center">
+                <div>
+                  {userTickets > 0 && (
+                    <div className="stats">
+                      <p className="text-lg mb-2">
+                        You have {userTickets} tickets in this draw
+                      </p>
 
-                    <div className="flex max-w-sm flex-wrap gap-x-2 gap-y-2 mt-5">
-                      {Array(userTickets)
-                        .fill("")
-                        .map((_, index) => (
-                          <p
-                            key={index}
-                            className="text-stone-300 h-20 w-12 bg-stone-500/30 rounded-lg flex flex-shrink-0 items-center justify-center text-xs italic"
-                          >
-                            {index + 1}
-                          </p>
-                        ))}
+                      <div className="flex max-w-sm flex-wrap gap-x-2 gap-y-2 mt-5">
+                        {Array(userTickets)
+                          .fill("")
+                          .map((_, index) => (
+                            <p
+                              key={index}
+                              className="text-stone-300 h-20 w-12 bg-stone-500/30 rounded-lg flex flex-shrink-0 items-center justify-center text-xs italic"
+                            >
+                              {index + 1}
+                            </p>
+                          ))}
+                      </div>
                     </div>
-                  </div>
-                )}
+                  )}
+                </div>
               </div>
             </div>
           </div>
