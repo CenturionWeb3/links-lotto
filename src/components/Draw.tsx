@@ -12,7 +12,6 @@ import {
 import { CONTRACT, OLDCONTRACT, currency } from "../../utils/constants";
 import { prepareContractCall, toWei } from "thirdweb";
 import CountdownTimer from "./CountdownTimer";
-import AdminControls from "./AdminControls";
 import { ethers } from "ethers";
 import Marquee from "react-fast-marquee";
 
@@ -54,10 +53,6 @@ function Draw() {
     contract: CONTRACT,
     method: "getTickets",
   });
-  // const { data: isLotteryOperator } = useReadContract({
-  //   contract: CONTRACT,
-  //   method: "lotteryOperator",
-  // });
   const { data: lastWinner } = useReadContract({
     contract: CONTRACT,
     method: "lastWinner",
@@ -107,7 +102,6 @@ function Draw() {
                     lastWinner.length,
                     lastWinner.length - 5
                   )}
-                  {/* {lastWinner?.toString()} */}
                 </h4>
                 <h4 className="text-white font-bold">
                   PRIZE:{" "}
@@ -118,13 +112,6 @@ function Draw() {
               </div>
             </Marquee>
             <div>
-              {/* {isLotteryOperator === wallet ? (
-                <div>
-                  <AdminControls />
-                </div>
-              ) : (
-                <div></div>
-              )} */}
               {winnings > 0 && (
                 <div className="max-w-md md:max-w-2xl lg:max-w-4xl mx-auto mt-5">
                   <TransactionButton
@@ -152,56 +139,51 @@ function Draw() {
                 </div>
               )}
             </div>
-            <div className="space-y-5 md:space-y-0 m-5 md:flex  md:flex-row items-start justify-center md:space-x-5">
-              <div className="stats-container">
-                <h1 className="text-5xl text-white font font-semibold text-center">
-                  {" "}
-                  PRIZE POOL
-                </h1>
-                <div className="flex justify-center mx-3 p-2 space-x-10">
-                  <div className="flex-1">
-                    <div className="pool-label">Winner Receives:</div>
-                    <div className="stats">
-                      {poolLoading ? (
-                        <p className="text-xl">...</p>
-                      ) : (
-                        <p className="text-3xl text-center pt-2">
-                          {Number(prizePool) / 10 ** 18 / 2} {currency}
-                        </p>
-                      )}
+            <div className="space-y-5 md:space-x-5 md:space-y-0 md:flex md:flex-col items-start justify-center">
+              {/* Row 1 */}
+              <div className="w-full p-4">
+                {/* PRIZE POOL */}
+                <div className="stats-container">
+                  <h1 className="text-5xl text-white font font-semibold text-center">
+                    PRIZE POOL
+                  </h1>
+                  <div className="flex justify-center mx-3 p-2 space-x-10">
+                    <div className="flex-1">
+                      <div className="pool-label">Winner Receives:</div>
+                      <div className="stats">
+                        {poolLoading ? (
+                          <p className="text-xl">...</p>
+                        ) : (
+                          <p className="text-3xl text-center pt-2">
+                            {Number(prizePool) / 10 ** 18 / 2} {currency}
+                          </p>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-              {/* The Next Draw Box */}
-              <div className="space-y-5 h-84 md:space-y-0 h-84 m-5 md:flex lg:flex-row items-stretch justify-center md:space-x-5">
-                <div className="stats-container">
-                  <h1 className="text-4xl lg:text-5xl text-white font font-semibold text-center">
-                    NEXT WEEKLY DRAW
-                  </h1>
-                  <br />
-                  <h2 className="text-3xl lg:text-4xl text-white font font-semibold text-center">
-                    {soldTickets && soldTickets?.toString()} Tickets Sold!
-                  </h2>
-                  <div className="flex justify-between p-2 space-x-2">
-                    {/* <div className="stats">
-                    <h2 className="text-sm">Tickets Remaining</h2>
-                    {remainingLoading ? (
-                      <p className="text-xl">...</p>
-                    ) : (
-                      <p className="text-xl">{RemainingTickets?.toString()}</p>
-                    )}
-                  </div> */}
+              {/* Row 2 */}
+              <div className="w-full md:flex lg:flex-row items-stretch justify-between gap-5">
+                {/* WEEKLY DRAW */}
+                <div className="w-full md:w-2/3 lg:w-3/4 pb-5 md:pb-0">
+                  <div className="stats-container space-y-5">
+                    <h1 className="text-4xl lg:text-5xl text-white font font-semibold text-center">
+                      NEXT WEEKLY DRAW
+                    </h1>
+                    <br />
+                    <h2 className="text-3xl lg:text-4xl text-white font font-semibold text-center">
+                      {soldTickets && soldTickets?.toString()} Tickets Sold!
+                    </h2>
+                    <div className="mt-5 mb-3">
+                      <CountdownTimer />
+                    </div>
                   </div>
-                  <div className="mt-5 mb-3">
-                    <CountdownTimer />
-                  </div>
-                  {/* Countdown Timer */}
-                  {/* ... */}
                 </div>
 
-                <div className="stats--container space-y-2">
-                  <div className="stats-container space-y-6 md:w-full">
+                {/* BUY TICKETS */}
+                <div className="w-full md:w-1/3 lg:w-1/4 pr-6">
+                  <div className="stats-container space-y-6">
                     <div className="flex font-bold text-base justify-between item-center text-white mt-6 pt-5">
                       <p>Ticket Price</p>
                       <p>
@@ -227,17 +209,6 @@ function Draw() {
                           {currency}
                         </p>
                       </div>
-
-                      {/* <div className="flex items-center justify-between text-stone-300 text-xs italic">
-                      <p>Service Fees</p>
-                      <p>
-                        {commission &&
-                          Number(ethers.formatEther(commission.toString())) *
-                            quantity}{" "}
-                        {currency}
-                      </p>
-                    </div> */}
-
                       <div className="flex items-center justify-between text-stone-300 text-xs italic font-semibold">
                         <p>+ Gas Fees</p>
                         <p>TBD</p>
@@ -263,15 +234,19 @@ function Draw() {
                   </div>
                 </div>
               </div>
-              <div className="flex place-content-center">
-                <div>
+              {/* Row 3 */}
+              <div className="flex justify-center items-center w-full p-5">
+                {/* TICKETS HELD */}
+                <div className="w-full max-w-lg">
                   {userTickets > 0 && (
                     <div className="stats">
-                      <p className="text-lg mb-2">
-                        You have {userTickets} tickets in this draw
-                      </p>
+                      <div className="flex items-center justify-center">
+                        <p className="text-lg mb-2">
+                          You have {userTickets} tickets in this draw
+                        </p>
+                      </div>
 
-                      <div className="flex max-w-sm flex-wrap gap-x-2 gap-y-2 mt-5">
+                      <div className="flex max-w-sm flex-wrap gap-x-2 gap-y-2 justify-center">
                         {Array(userTickets)
                           .fill("")
                           .map((_, index) => (
